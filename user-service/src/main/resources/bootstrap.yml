@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: user-service2
+  profiles:
+    active: dev # 环境
+  cloud:
+    nacos:
+      server-addr: localhost:8849
+      discovery:
+        cluster-name: loli # 集群名称
+#      config:
+#        file-extension: yaml # 文件后缀名

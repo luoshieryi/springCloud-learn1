@@ -1,0 +1,37 @@
+server:
+  port: 8021
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_order?useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: loli # 集群名称
+mybatis:
+  type-aliases-package: loli.gothic.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    loli.gothic: debug
+  pattern:
+    dateformat: MM-dd HH:mm:ss:SSS
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8001/eureka
+#user-service:    # Spring Cloud 已经默认移除了 ribbon
+#  ribbon:
+#    NFloadBalancerRuleClassName:
+#      com.alibaba.cloud.nacos.ribbon.NacosRule
+#ribbon:
+#  eager-load:
+#    enabled: true
+#    clients: # 指定饥饿加载的服务名称
+#      - userservice
