@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-service2
+    name: user-service2 # 加载比注册中心更早, 会被 application.yml 替代
   profiles:
     active: dev # 环境
   cloud:
