@@ -1,14 +1,14 @@
-package loli.gothic.order.client;
+package loli.gothic.feign.client;
 
-import loli.gothic.order.pojo.User;
+import loli.gothic.feign.pojo.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient("user-service")
+@FeignClient(value = "user-service", path = "user")
 public interface UserClient {
 
-    @GetMapping("/user/{id}")
+    @GetMapping("{id}")
     User queryById(@PathVariable("id") Long id);
 
 }

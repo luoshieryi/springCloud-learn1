@@ -1,4 +1,4 @@
-package loli.gothic.order.pojo;
+package loli.gothic.feign.pojo;
 
 import lombok.Data;
 

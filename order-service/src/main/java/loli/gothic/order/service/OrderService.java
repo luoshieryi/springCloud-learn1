@@ -1,14 +1,12 @@
 package loli.gothic.order.service;
 
-import loli.gothic.order.client.UserClient;
+import loli.gothic.feign.client.UserClient;
+import loli.gothic.feign.pojo.User;
 import loli.gothic.order.mapper.OrderMapper;
 import loli.gothic.order.pojo.Order;
-import loli.gothic.order.pojo.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = @Autowired)

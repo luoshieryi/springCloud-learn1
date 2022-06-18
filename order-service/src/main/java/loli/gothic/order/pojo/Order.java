@@ -1,5 +1,6 @@
 package loli.gothic.order.pojo;
 
+import loli.gothic.feign.pojo.User;
 import lombok.Data;
 
 @Data

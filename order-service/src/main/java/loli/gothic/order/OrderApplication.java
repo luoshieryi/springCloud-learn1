@@ -1,5 +1,6 @@
 package loli.gothic.order;
 
+import loli.gothic.feign.client.UserClient;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 @MapperScan("loli.gothic.order.mapper")
 @SpringBootApplication
-@EnableFeignClients
+@EnableFeignClients(clients = UserClient.class)
 //@EnableDiscoveryClient
 public class OrderApplication {
 
