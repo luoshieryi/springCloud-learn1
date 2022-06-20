@@ -1,0 +1,5 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: learn1-nacos:8848

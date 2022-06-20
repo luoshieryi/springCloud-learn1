@@ -100,3 +100,53 @@ spring:
 
 - [Route Predicate Factories](https://cloud.spring.io/spring-cloud-gateway/multi/multi_gateway-request-predicates-factories.html)
 - [GatewayFilter Factories](https://cloud.spring.io/spring-cloud-gateway/multi/multi__gatewayfilter_factories.html)
+
+### Docker
+
+- 虚拟机: 模拟硬件设备, 运行新的系统
+- Docker: 封装linux内核的函数库, 利用沙箱实现隔离
+- Docker Compose: 封装Docker, 实现集群部署
+
+#### Docker 相关的概念
+
+- Image: 镜像, 容器的模板
+- Container: 容器, 镜像的实例
+- Docker Registry: 镜像仓库, 镜像的存储
+- Dockerfile: 镜像构建文件, 镜像的构建脚本
+- Docker Compose: Docker 集群部署
+
+编写 Dockerfile:
+
+![](https://raw.githubusercontent.com/luoshieryi/images/main/markdown/20220619165116.png)
+
+```dockerfile
+  # 指定基础镜像
+  FROM ubuntu:16.04
+  # 配置环境变量，JDK的安装目录
+  ENV JAVA_DIR=/usr/local
+  
+  # 拷贝jdk和java项目的包
+  COPY ./jdk8.tar.gz $JAVA_DIR/
+  COPY ./docker-demo.jar /tmp/app.jar
+  
+  # 安装JDK
+  RUN cd $JAVA_DIR \
+  && tar -xf ./jdk8.tar.gz \
+  && mv ./jdk1.8.0_144 ./java8
+  
+  # 配置环境变量
+  ENV JAVA_HOME=$JAVA_DIR/java8
+  ENV PATH=$PATH:$JAVA_HOME/bin
+  
+  # 暴露端口
+  EXPOSE 8090
+  # 入口，java项目的启动命令
+  ENTRYPOINT java -jar /tmp/app.jar
+```
+等价于
+```dockerfile
+  FROM java:8-alpine
+  COPY ./docker-demo.jar /tmp/app.jar
+  EXPOSE 8090
+  ENTRYPOINT java -jar /tmp/app.jar
+```

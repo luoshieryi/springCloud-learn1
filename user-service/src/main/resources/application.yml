@@ -1,11 +1,8 @@
 server:
   port: 8011
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/cloud_user?useSSL=false
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: dev
   application:
     name: user-service
 mybatis:

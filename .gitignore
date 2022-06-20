@@ -1,2 +1,4 @@
 .idea/
 target/
+docker/mysql/data/
+docker/nacos/logs/

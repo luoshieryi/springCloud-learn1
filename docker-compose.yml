@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  learn1-nacos:
+    container_name: learn1-nacos
+    hostname: learn1-nacos
+    image: nacos/nacos-server:v2.1.0
+    env_file:
+      - ./docker/env/nacos.env
+    volumes:
+      - ./docker/nacos/logs/:/home/nacos/logs
+#      - ./docker/nacos/custom.properties:/home/nacos/init.d/custom.properties
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    depends_on:
+      - learn1-mysql
+    restart: always
+
+  learn1-mysql:
+    container_name: learn1-mysql
+    image: mysql:8.0.29
+    env_file:
+      - ./docker/env/mysql.env
+    volumes:
+      - ./docker/mysql/data/:/var/lib/mysql/
+      - ./docker/mysql/initdb/:/docker-entrypoint-initdb.d/
+    ports:
+      - "3306:3306"
+    cap_add:
+      - SYS_NICE
+    restart: always
+
+  learn1-user-service:
+    container_name: learn1-user-service
+    build: ./user-service
+    depends_on:
+      - learn1-nacos
+    restart: always
+
+  learn1-order-service:
+    container_name: learn1-order-service
+    build: ./order-service
+    depends_on:
+      - learn1-nacos
+    restart: always
+
+  learn1-gateway:
+    container_name: learn1-gateway
+    build: ./gateway
+    ports:
+      - "10010:10010"
+    depends_on:
+      - learn1-nacos
+    restart: always
